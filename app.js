@@ -43,7 +43,7 @@ app.get('/', function(req, res) {
 //----
 // getaccount
 //----
-app.get('/getpeerinfo', function(req, res) {
+app.get('/getaccount', function(req, res) {
     client.getAccount(function(err, getAccount) {
         if (err) {
             return console.error(err);
