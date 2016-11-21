@@ -20,12 +20,12 @@ var express = require('express');
 var app = express();
 
 //RPC hook
-var dashcoin = require('bitcoin');
-var client = new dashcoin.Client({
-  host: 'localhost',
-  port: 9998,
-  user: '',
-  pass: ''
+var coin = require('bitcoin');
+var client = new coin.Client({
+  host: 'localhost', // your coin RPC JSON deamon host here
+  port: 9998, // your coin RPC JSON port here
+  user: '', // your coin RPC JSON user here
+  pass: '' // your coin RPC JSON password here
 });
 
 // Express Routing configuration
@@ -34,23 +34,23 @@ var client = new dashcoin.Client({
 // root "/"
 //----
 app.get('/', function (req, res) {
-        var data = '{"hachiko":"Wuf!"}';
-        console.log(data);
-        res.end(data);
+	var data = "{\"hachiko\":\"Wuf!\"}";
+	console.log(data);
+	res.end(data);
 });
 
 //----
 // getinfo
 //----
 app.get('/getinfo', function (req, res) {
-        client.getInfo(function(err, getInfo) {
-                if (err) {
-                        return console.error(err);
-                }
-        var data = util.inspect(getInfo, {showHidden: false, depth: null});
-        console.log(data);
-        res.end(data);
-        });
+	client.getInfo(function(err, getInfo) {
+		if (err) {
+			return console.error(err);
+		}
+	var data = util.inspect(getInfo, {showHidden: false, depth: null});
+	console.log(data);
+	res.end(data);
+	});
 });
 
 //----
