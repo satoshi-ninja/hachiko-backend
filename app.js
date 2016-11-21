@@ -24,7 +24,7 @@ var dashcoin = require('bitcoin');
 var client = new dashcoin.Client({
   host: 'localhost',
   port: 9998,
-  user: ''
+  user: '',
   pass: ''
 });
 
@@ -34,21 +34,23 @@ var client = new dashcoin.Client({
 // root "/"
 //----
 app.get('/', function (req, res) {
-	console.logout("Success!\nHachikō says \"Wuf!\".");
-}
+        var data = '{"hachiko":"Wuf!"}';
+        console.log(data);
+        res.end(data);
+});
 
 //----
 // getinfo
 //----
 app.get('/getinfo', function (req, res) {
-	client.getInfo(function(err, getInfo) {
-		if (err) {
-			return console.error(err);
-		}
-	var data = util.inspect(getInfo, {showHidden: false, depth: null});
-	console.log(data);
-	res.end(data);
-	});
+        client.getInfo(function(err, getInfo) {
+                if (err) {
+                        return console.error(err);
+                }
+        var data = util.inspect(getInfo, {showHidden: false, depth: null});
+        console.log(data);
+        res.end(data);
+        });
 });
 
 //----
