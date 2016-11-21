@@ -34,10 +34,12 @@ var client = new coin.Client({
 // root "/"
 //----
 app.get('/', function (req, res) {
-	var data = "{\"hachiko\":\"Wuf!\"}";
-	console.log(data);
-	res.end(data);
+        var hachikoWuf = {"hachiko":"Wuf!","donations":"1BQH73H1jAbxowGpXgxtAkwNgHyPPu1DkS"};
+        var data = util.inspect(hachikoWuf, {showHidden: false, depth: null});
+        console.log(data);
+        res.end(data);
 });
+
 
 //----
 // getinfo
