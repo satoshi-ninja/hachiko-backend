@@ -1,3 +1,7 @@
+//----
+// License
+//----
+
 /*
 Copyright 2016 satoshi.ninja@protonmail.com
 
@@ -14,21 +18,43 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+//----
+// Requirements
+//----
+
 // Dependencies
-const util = require('util')
-var express = require('express');
+const util = require('util') // shell$ npm install util
+var express = require('express'); // shell$ npm install express
+var coin = require('bitcoin'); // shell$ npm install bitcoin
 var app = express();
 
 //RPC hook
-var coin = require('bitcoin');
 var client = new coin.Client({
     host: 'localhost', // your coin RPC JSON deamon host here
     port: 9998, // your coin RPC JSON port here
-    user: '', // your coin RPC JSON user here
-    pass: '' // your coin RPC JSON password here
+    user: 'username',
+    pass: 'password',
+    /*
+    Uncomment lines below to enable SSL encryption.
+    If you're using this to connect to bitcoind across
+    a network it is highly recommended to enable ssl,
+    otherwise an attacker may intercept your RPC
+    credentials resulting in theft of your coins.
+    When enabling ssl by setting the configuration
+    option to true, the sslStrict option (verifies
+    the server certificate) will also be enabled by
+    default. It is highly recommended to specify the
+    sslCa as well, even if your *coind has a certificate
+    signed by an actual CA, to ensure you are connecting
+    to your own bitcoind.
+    See also https://en.bitcoin.it/wiki/Enabling_SSL_on_original_client_daemon  
+    */
+    // ssl: true,
+    //sslStrict: true,
+    //sslCa: fs.readFileSync(__dirname + '/myca.cert')
 });
 
-// Express Routing configuration
+// Express Routing
 
 //----
 // root "/"
